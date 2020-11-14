@@ -56,8 +56,8 @@ jobs:
         with:
           push: true
           tags: ${{ steps.docker_meta.outputs.tags }}
-          allow:
-            - network.host
+          allow: |
+            network.host
           build-args: |
             SEARCH_URL=${{ secrets.SEARCH_URL }}
             SEARCH_KEY=${{ secrets.SEARCH_KEY }}
