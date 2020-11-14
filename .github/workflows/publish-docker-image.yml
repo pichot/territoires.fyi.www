@@ -56,7 +56,9 @@ jobs:
         with:
           push: true
           tags: ${{ steps.docker_meta.outputs.tags }}
+          allow:
+            - network.host
           build-args: |
             SEARCH_URL=${{ secrets.SEARCH_URL }}
             SEARCH_KEY=${{ secrets.SEARCH_KEY }}
-            API_URL=http://hasura:8080/v1/graphql
+            API_URL=http://localhost:8080/v1/graphql
