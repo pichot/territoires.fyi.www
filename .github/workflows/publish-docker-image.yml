@@ -52,4 +52,4 @@ jobs:
           build-args: |
             SEARCH_URL=${{ secrets.SEARCH_URL }}
             SEARCH_KEY=${{ secrets.SEARCH_KEY }}
-            API_URL=http://hasura:8080/graphql/v1
+            API_URL=http://hasura:8080/v1/graphql
