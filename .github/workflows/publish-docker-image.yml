@@ -15,12 +15,19 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
         env:
           POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
       hasura:
         image: hasura/graphql-engine:latest
+        ports:
+          - 8080:8080
         env:
           HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgres@db:5432/territoires.fyi
-          HASURA_GRAPHQL_ENABLE_CONSOLE: true
-          HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup,http-log,webhook-log,websocket-log,query-log
     steps:
       - 
         name: Check out the repo
