@@ -26,6 +26,11 @@ jobs:
         image: hasura/graphql-engine:latest
         ports:
           - 8080:8080
+        options: >-
+          --health-cmd "wget --quiet --spider http://hasura:8080/healthz"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
         env:
           HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgres@db:5432/territoires.fyi
     steps:
@@ -61,4 +66,4 @@ jobs:
           build-args: |
             SEARCH_URL=${{ secrets.SEARCH_URL }}
             SEARCH_KEY=${{ secrets.SEARCH_KEY }}
-            API_URL=http://localhost:8080/v1/graphql
+            API_URL=http://hasura:8080/v1/graphql
