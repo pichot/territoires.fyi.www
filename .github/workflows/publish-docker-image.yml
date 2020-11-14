@@ -1,7 +1,8 @@
 name: Publish Docker image
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - master
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
@@ -9,6 +10,9 @@ jobs:
     services:
       db: 
         image: docker.pkg.github.com/pichot/territoires.fyi.db/territoires.fyi.db:v0.1
+        credentials:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
         env:
           POSTGRES_PASSWORD: postgres
       hasura:
