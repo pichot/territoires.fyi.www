@@ -27,7 +27,7 @@ jobs:
         ports:
           - 8080:8080
         options: >-
-          --health-cmd "wget --quiet --spider http://hasura:8080/healthz"
+          --health-cmd "wget -qO- http://hasura:8080/healthz"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
