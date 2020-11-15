@@ -15,18 +15,20 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
         env:
           POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
         options: >-
           --health-cmd "pg_isready -q -h db"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-      hasura:
-        image: hasura/graphql-engine:latest
-        ports:
-          - 8080:8080
-        env:
-          HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgres@db:5432/territoires.fyi
     steps:
+      -
+        name: Run Hasura
+        run: |
+          docker run -d --net=host -p 8080:8080 \
+            -e HASURA_GRAPHQL_DATABASE_URL=postgres://postgres:postgres@localhost:5432/territoires.fyi \
+            hasura/graphql-engine:latest
       - 
         name: Check out the repo
         uses: actions/checkout@v2
@@ -59,4 +61,4 @@ jobs:
           build-args: |
             SEARCH_URL=${{ secrets.SEARCH_URL }}
             SEARCH_KEY=${{ secrets.SEARCH_KEY }}
-            API_URL=${{ job.services.hasura.ports[8080] }}/v1/graphql
+            API_URL=http://localhost:8080/v1/graphql
