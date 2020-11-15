@@ -26,8 +26,8 @@ jobs:
       -
         name: Run Hasura
         run: |
-          docker run -d --net=host -p 8080:8080 \
-            -e HASURA_GRAPHQL_DATABASE_URL=postgres://postgres:postgres@localhost:5432/territoires.fyi \
+          docker run -d --name=hasura --net=host -p 8080:8080 \
+            -e HASURA_GRAPHQL_DATABASE_URL=postgres://postgres:postgres@0.0.0.0:5432/territoires.fyi \
             hasura/graphql-engine:latest
       - 
         name: Check out the repo
@@ -61,4 +61,4 @@ jobs:
           build-args: |
             SEARCH_URL=${{ secrets.SEARCH_URL }}
             SEARCH_KEY=${{ secrets.SEARCH_KEY }}
-            API_URL=http://localhost:8080/v1/graphql
+            API_URL=http://0.0.0.0:8080/v1/graphql
