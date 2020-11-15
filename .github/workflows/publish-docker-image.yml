@@ -15,8 +15,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
         env:
           POSTGRES_PASSWORD: postgres
-        ports:
-          - 5432:5432
         options: >-
           --health-cmd "pg_isready -q -h db"
           --health-interval 10s
@@ -26,11 +24,6 @@ jobs:
         image: hasura/graphql-engine:latest
         ports:
           - 8080:8080
-        options: >-
-          --health-cmd "wget -qO- http://hasura:8080/healthz"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
         env:
           HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgres@db:5432/territoires.fyi
     steps:
@@ -66,4 +59,4 @@ jobs:
           build-args: |
             SEARCH_URL=${{ secrets.SEARCH_URL }}
             SEARCH_KEY=${{ secrets.SEARCH_KEY }}
-            API_URL=http://hasura:8080/v1/graphql
+            API_URL=${{ job.services.hasura.ports[8080] }}/v1/graphql
