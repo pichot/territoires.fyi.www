@@ -111,7 +111,6 @@ export default {
   },
   generate: {
     routes: async function () {
-      const sampleData = process.env.SAMPLE_DATA
       const uri = process.env.API_URL || 'http://localhost:8080/v1/graphql'
       const graphQLClient = new GraphQLClient(uri)
 
@@ -148,7 +147,7 @@ export default {
         }
       }`
 
-      const data = await graphQLClient.request(sampleData ? sampleDataQuery : query)
+      const data = await graphQLClient.request(!!process.env.SAMPLE_DATA ? sampleDataQuery : query)
 
       const routes = []
 

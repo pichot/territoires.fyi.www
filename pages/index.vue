@@ -24,7 +24,7 @@
 
     <div class="my-16 border-4 p-4 border-gray-200">
       <p>
-        <strong>12/11/2020</strong> - Lancement initial avec toutes les régions, départements, epcis, et communes de l'hexagone.
+        <strong>17/11/2020</strong> - Lancement initial avec toutes les régions, départements, epcis, et communes de l'hexagone.
       </p>
 
       <p class="bg-yellow-200">⚠️ Cette application n'inclut pas actuellement les données des territoires français d'outre-mer.</p>

@@ -8,31 +8,41 @@
       :departement="commune.departement"
     />
 
-    <div class="mt-16 font-body grid grid-cols-8 grid-rows-6 gap-8">
+    <div class="mt-16 font-body grid grid-cols-8 grid-rows-4 gap-8">
       <div class="col-span-4 row-span-4">
         <CollectiviteMap
           :highlightCentroid="commune.geojson"
         />
       </div>
       
-      <div class="bg-black text-white p-4 col-span-2 row-span-2">
+      <div class="bg-black text-white p-4 col-span-2 row-span-1">
         <div class="uppercase font-hairline">Population</div>
-        <div class="text-4xl font-semibold">{{commune.population | numeralFormat}}</div>
+        <div class="text-4xl font-semibold">{{commune.population}}</div>
       </div>
 
-      <div class="bg-gray-900 text-white p-4 col-span-2 row-span-2">
-        <div class="uppercase font-hairline">Code EPCI</div>
+      <div class="bg-gray-900 text-white p-4 col-span-2 row-span-1">
+        <div class="uppercase font-hairline">Code INSEE</div>
         <div class="text-4xl font-mono">{{commune.insee_com}}</div>
       </div>
 
-      <div class="p-4 col-span-4 bg-gray-600 text-lg font-semibold text-white space-x-4">
-        <a :href="`https://fr.wikipedia.org/wiki/${commune.nom}`" target="_blank" class="t">Wikipedia
-          <svg class="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-        </a>
-
-        <a :href="`https://www.google.com/maps/place/${commune.nom}`" target="_blank" class="t">Google Maps
-          <svg class="w-5 h-5 vertical-align inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-        </a>
+      <div class="col-span-4 col-start-5 row-span-1 text-lg font-body text-gray-800 ">
+        <ul>
+          <li>
+            <a :href="`https://fr.wikipedia.org/wiki/${commune.nom}`" target="_blank">Wikipedia
+              <svg class="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </li>
+          <li>
+            <a :href="`https://www.google.com/maps/place/${commune.nom}`" target="_blank">Google Maps
+              <svg class="w-5 h-5 vertical-align inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </li>
+          <li>
+            <a :href="`https://www.cohesion-territoires.gouv.fr/${commune.nom}/${commune.insee_com}`" target="_blank">Ma Commune
+              <svg class="w-5 h-5 vertical-align inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
