@@ -5,7 +5,7 @@ export default {
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
   */
-  target: 'static',
+  target: 'server',
   publicRuntimeConfig: {
     searchUrl: process.env.SEARCH_URL || 'http://localhost:7700',
     searchKey: process.env.SEARCH_KEY || null
@@ -46,7 +46,6 @@ export default {
   */
   plugins: [
     '~/plugins/meilisearch.js',
-    '~/plugins/numerals.client.js'
   ],
   /*
   ** Auto import components
@@ -71,7 +70,6 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/axios',
     'nuxt-graphql-request'
   ],
 
@@ -100,9 +98,6 @@ export default {
     includeNodeModules: true,
   },
 
-  axios: {
-    // proxyHeaders: false
-  },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
